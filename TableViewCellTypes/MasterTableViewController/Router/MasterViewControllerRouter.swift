@@ -31,32 +31,3 @@ class MasterViewControllerRouter:MasterTableViewPresenterToRouter
         //vc.present(, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
     }
 }
-
-/* let view = ZeusMemberBenefitsViewController.instantiate()
-       let presenter: ZeusMemberBenefitsViewToPresenterProtocol & ZeusMemberBenefitsInteractorToPresenter = ZeusMemberBenefitsPresenter()
-       let interactor: ZeusMemberBenefitsPresenterToInteractor = ZeusMemberBenefitsInteractor()
-       let router: ZeusMemberBenefitsPresenterToRouterProtocol = ZeusMemberBenefitsRouter()
-       
-       view.presenter = presenter
-       presenter.view = view
-       presenter.interactor = interactor
-       presenter.router = router
-       interactor.presenter = presenter
-       
-       return view
- */
-
-protocol Storyboarded {
-    static func instantiate() -> Self
-}
-
-extension Storyboarded where Self: UIViewController {
-    
-    static func instantiate() -> Self {
-        let fullName = NSStringFromClass(self)
-        let className = fullName.components(separatedBy: ".")[1]
-        let storyboard = UIStoryboard(name: className, bundle: Bundle.main)
-        return storyboard.instantiateViewController(withIdentifier: className) as! Self
-    }
-    
-}

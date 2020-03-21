@@ -17,7 +17,11 @@ class PickerTableViewCell: UITableViewCell {
     private var model: PickerTableViewModelItem?
     {
         didSet{
+            guard let model = model else {
+                return
+            }
             configurePicker()
+            self.labelTextfield.text = model.labelPickerText
         }
     }
     private var pickerView: UIPickerView?

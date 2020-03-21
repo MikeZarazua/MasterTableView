@@ -27,8 +27,7 @@ enum QuestionType: Int
 {
     case textField    = 1
     case picker       = 2
-    case video        = 3
-    case camera       = 4
+    case multimedia   = 4
     case mapKit       = 5
     case mapView      = 6
 }

@@ -24,7 +24,7 @@ class MasterViewControllerPresenter: MasterTableViewToPresenterProtocol
     }
     
     /**
-     This fucntion get the identifier for deteerminate cell
+     This fucntion get the identifier for determinate cell
     */
     func getIdentifier(object: TableViewCellCustomModelProtocol) ->String
     {

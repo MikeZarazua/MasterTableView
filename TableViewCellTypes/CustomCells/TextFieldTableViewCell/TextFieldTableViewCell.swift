@@ -54,7 +54,7 @@ extension TextFieldTableViewCell
     }
 }
 
-//MARK: - CellCustomModelProtocol methds
+//MARK: - CellCustomModelProtocol methods
 extension TextFieldTableViewCell: CellCustomModelProtocol
 {
     func setModel(model: TableViewCellCustomModelProtocol) {

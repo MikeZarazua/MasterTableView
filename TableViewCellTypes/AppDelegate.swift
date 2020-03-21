@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import GoogleMaps
+import GooglePlaces
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if GMSServices.provideAPIKey("AIzaSyAMU8HbDzygu3SI5wiInnXBTx21fyEfbPM") == false {
+                  print("Error in apiKey of GoogleMaps")
+                  //TODO: Handle error..
+              }
+              if GMSPlacesClient.provideAPIKey("AIzaSyAMU8HbDzygu3SI5wiInnXBTx21fyEfbPM") == false {
+                  print("Error in apiKey of GoogleMaps")
+                  //TODO: Handler error...
+              }
+        
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         let vc = MasterViewControllerRouter.createModule()
         let nvc = UINavigationController(rootViewController: vc)

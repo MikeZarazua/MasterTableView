@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class MasterViewController: UIViewController, Storyboarded {
     /// IBOutlets
     @IBOutlet weak var tableView: UITableView!
     /// variables
-    private var dataSource: [TableViewCellCustomModelProtocol]?
-    var presenter: MasterTableViewToPresenterProtocol?
+    private var dataSource  : [TableViewCellCustomModelProtocol]?
+    var presenter           : MasterTableViewToPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +22,22 @@ class MasterViewController: UIViewController, Storyboarded {
         // Do any additional setup after loading the view.
         initTableView()
         getDataForTableView()
+        configureIQKeyboard()
     }
 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        let vc = SuperUserViewController.instantiate()
+//        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
 
 //MARK: - Private methods
 extension MasterViewController
 {
-    
     /**
      This function init the configurations setting  for tableView
      */
@@ -41,6 +49,9 @@ extension MasterViewController
         tableView.allowsSelection   = false
         tableView.register(PickerTableViewCell.nib, forCellReuseIdentifier: PickerTableViewCell.identifier)
         tableView.register(TextFieldTableViewCell.nib, forCellReuseIdentifier: TextFieldTableViewCell.identifier)
+        tableView.register(CameraTableViewCell.nib, forCellReuseIdentifier: CameraTableViewCell.identifier)
+        tableView.register(GoogleMapTableViewCell.nib, forCellReuseIdentifier: GoogleMapTableViewCell.identifier)
+        tableView.register(MapKitTableViewCell.nib, forCellReuseIdentifier: MapKitTableViewCell.identifier)
     }
     
     /**
@@ -49,6 +60,16 @@ extension MasterViewController
     private func getDataForTableView()
     {
         self.presenter?.getDataSource_Presenter()
+    }
+    
+    /**
+        This function configures the IQKeyboard
+    */
+    private func configureIQKeyboard()
+    {
+        //Keyboard and badges
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
     }
 }
 
@@ -72,14 +93,6 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
 }
-
-//let sectionData = self.sectionData[indexPath.section]
-//       let model = sectionData.dataSource[indexPath.row]
-//       let identifier = presenter?.getIdentifier(object: model) ?? "Error getting identifier, presenter is null"
-//       let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-//       if let cell = cell as? ZMBCustomModelCellProtocol { cell.setModel(model: model) }
-//       if let cell = cell as? ZMBCustomDelegateOfCell { cell.setDelegate(object: self) }
-//       return cell
 
 //MARK: - MasterTableViewPresenterToViewProtocol methods
 extension MasterViewController: MasterTableViewPresenterToViewProtocol

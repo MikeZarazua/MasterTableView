@@ -18,6 +18,12 @@ class CellToIdentifier
                 return TextFieldTableViewCell.identifier
             case is PickerTableViewModelItem:
                 return PickerTableViewCell.identifier
+            case is CameraTableViewModelItem:
+                return CameraTableViewCell.identifier
+            case is GoogleMapModelItem:
+                return GoogleMapTableViewCell.identifier
+            case is MapKitModelItem:
+                return MapKitTableViewCell.identifier
             default:
                 return "modelProtocolItem Unexpected Type"
         }
